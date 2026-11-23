@@ -1,0 +1,9 @@
+export const PHONE:string;
+export const STAGES:string[];
+export type Topic={id:string;title:string;group:string;question:string;text:string;url?:string;keywords:string[];updated_at:string;source:string};
+export const TOPICS:Topic[];
+export function classify(input:string):string;
+export function validateLead(data:any):any;
+export function summary(data:any,id?:string):string;
+export function waLink(text:string):string;
+export function csvCell(value:any):string;
