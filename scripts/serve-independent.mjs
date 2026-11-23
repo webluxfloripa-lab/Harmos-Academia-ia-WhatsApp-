@@ -1,0 +1,8 @@
+// Servidor opcional para executar o build sem Vercel ou ChatGPT.
+import {createServer} from 'node:http';
+import {readFile,stat} from 'node:fs/promises';
+import {resolve,extname,sep} from 'node:path';
+import {handle} from '../api/crm.js';
+const root=resolve('dist');
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.zip':'application/zip','.txt':'text/plain; charset=utf-8'};
+createServer(async(req,res)=>{try{const url=new URL(req.url,'http://localhost');if(url.pathname.startsWith('/api/crm/')){let body='';for await(const chunk of req){body+=chunk;if(body.length>12000){res.writeHead(413);res.end('Mensagem muito longa');return}}req.body=body;req.query={route:url.pathname.slice('/api/crm/'.length)};await handle(req,res);return}if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);res.end();return}let relative=decodeURIComponent(url.pathname).replace(/^\/+/, '');if(['','atendimento','chat','crm','privacidade-atendimento'].includes(relative))relative='index.html';const file=resolve(root,relative);if(!file.startsWith(root+sep)){res.writeHead(403);res.end();return}const info=await stat(file);if(!info.isFile())throw Error('not a file');res.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff','Cache-Control':'no-cache'});res.end(req.method==='HEAD'?undefined:await readFile(file));}catch{res.writeHead(404);res.end('Não encontrado')}}).listen(Number(process.env.PORT||3000),process.env.HOST||'127.0.0.1',()=>console.log('Harmos Conecta iniciado. Porta: '+(process.env.PORT||3000)));

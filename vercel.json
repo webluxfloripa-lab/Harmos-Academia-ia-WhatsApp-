@@ -1,17 +1,69 @@
 {
-  "framework":"vite",
-  "buildCommand":"npm run build",
-  "outputDirectory":"dist",
-  "functions":{"api/crm.js":{"maxDuration":30}},
-  "rewrites":[
-    {"source":"/api/crm/:route*","destination":"/api/crm?route=:route*"},
-    {"source":"/atendimento","destination":"/index.html"},
-    {"source":"/chat","destination":"/index.html"},
-    {"source":"/crm","destination":"/index.html"},
-    {"source":"/privacidade-atendimento","destination":"/index.html"}
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/crm.js": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/crm/:route*",
+      "destination": "/api/crm?route=:route*"
+    },
+    {
+      "source": "/atendimento",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/chat",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/crm",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/privacidade-atendimento",
+      "destination": "/index.html"
+    }
   ],
-  "headers":[
-    {"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"}]},
-    {"source":"/chat","headers":[{"key":"Content-Security-Policy","value":"frame-ancestors 'self' https://harmosacademia.com.br https://www.harmosacademia.com.br"}]}
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/chat",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://harmosacademia.com.br https://www.harmosacademia.com.br"
+        }
+      ]
+    },
+    {
+      "source": "/downloads/Harmos_Conecta_Projeto_Completo_2026-11-23.zip",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/zip"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Harmos_Conecta_Projeto_Completo_2026-11-23.zip\""
+        }
+      ]
+    }
   ]
 }

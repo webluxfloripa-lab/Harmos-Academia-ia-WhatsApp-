@@ -27,3 +27,9 @@ A pasta legacy preserva o código anterior D1 apenas como referência de migraç
 
 ## Continuidade
 Código e configurações ficam nesta cópia completa. Código publicado no repositório público https://github.com/webluxfloripa-lab/Harmos-Academia-ia-WhatsApp-. A Vercel recebeu uma implantação a partir do commit GitHub. A publicação por commit está verificada; a conexão contínua para deploy automático ainda precisa ser configurada no projeto Vercel. Backups do banco devem ser feitos no Supabase; o ZIP de código não contém dados de alunos nem credenciais de servidor.
+
+## Download completo independente
+
+[Baixar projeto completo em ZIP](https://harmos-conecta.vercel.app/downloads/Harmos_Conecta_Projeto_Completo_2026-11-23.zip), incluindo fonte, estrutura/dados de negócio do Supabase, frontend publicado, configuração Vercel, widget e instruções de restauração. O arquivo também está em public/downloads neste repositório. Consulte public/downloads/README.md para escopo e checksum.
+
+O código original agora está sob MIT. Ativos de terceiros mantêm os direitos descritos em THIRD_PARTY_NOTICES.md.
